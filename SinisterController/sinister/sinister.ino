@@ -1,6 +1,6 @@
 #include "Nintendo.h"
 /* Requires Nicohood
- * AmbiGCC by Eryk Banatt
+ * Sinister Controller - by Eryk Banatt
  * Loosely based upon SimpleControllers' work
  */
  
@@ -27,8 +27,7 @@ const int Cy = A2;
 //Value of big lightshield (TODO: test)
 const int RLIGHTv = 74;
 
-int lastxinput1 = 128; //previous poll's x axis inputs, for backdash fix
-int lastxinput2 = 128; 
+int lastxinput = 128; //previous poll's x axis inputs, for backdash fix
 
 
 void setup()
@@ -118,7 +117,7 @@ void loop()
      * if previous frame was in deadzone and this frame is in tilt zone, and no buttons are being pressed, return deadzone value
      */
      
-    if (lastxinput > 86 && lastxinput1 < 170) {
+    if (lastxinput > 86 && lastxinput < 170) {
       //if any button or C stick, do not drop input
       if(pinA == 1 || pinB == 1 || pinX == 1 || pinY == 1 || pinZ == 1 || pinR == 1 || pinL == 1){
         pinxAxis = xpinconv;
